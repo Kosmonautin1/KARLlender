@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advent Calendar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+        .door {
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            background-color: #d2232a;
+            color: white;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #000;
+            border-radius: 10px;
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        .door.locked {
+            background-color: #888;
+            cursor: not-allowed;
+        }
+        .door.opened {
+            background-color: #fff;
+            color: black;
+            transform: rotateY(180deg);
+        }
+    </style>
+</head>
+<body>
+    <h1 style="width: 100%; text-align: center;">🎄 Advent Calendar 🎄</h1>
+    <div id="calendar">
+        <!-- Example of 24 doors, each with a unique Spotify link -->
+        <div class="door" data-day="1" data-spotify="https://open.spotify.com/track/3nqXjVcbN4v99zFyO8rXnr">1</div>
+        <div class="door" data-day="2" data-spotify="https://open.spotify.com/track/2f9vnnzV9MnmGoL7tLftHw">2</div>
+        <div class="door" data-day="3" data-spotify="https://open.spotify.com/track/0ZmpaQj2TptHhIl7l0z0fg">3</div>
+        <div class="door" data-day="4" data-spotify="https://open.spotify.com/track/1DsaXffW4qlqC1Fv3H5EuZ">4</div>
+        <div class="door" data-day="5" data-spotify="https://open.spotify.com/track/44cxJl5P5dtvYgntrgGx84">5</div>
+        <div class="door" data-day="6" data-spotify="https://open.spotify.com/track/7k6kwYr8Lss3jHoQq3yU1e">6</div>
+        <div class="door" data-day="7" data-spotify="https://open.spotify.com/track/4FJlJdGsgJrS7Qtjs9vsq5">7</div>
+        <div class="door" data-day="8" data-spotify="https://open.spotify.com/track/2Rfbdvs5NKfp5jdI0hlDg6">8</div>
+        <div class="door" data-day="9" data-spotify="https://open.spotify.com/track/7eMffWv2gGeqgPbqvfzE2n">9</div>
+        <div class="door" data-day="10" data-spotify="https://open.spotify.com/track/7tG3E2zGGbA2ChR6My9tvM">10</div>
+        <div class="door" data-day="11" data-spotify="https://open.spotify.com/track/1gkq8enOdbJ66A7sfXh9nH">11</div>
+        <div class="door" data-day="12" data-spotify="https://open.spotify.com/track/7Hz6gMm0wr5nK0Bmd7B4oG">12</div>
+        <div class="door" data-day="13" data-spotify="https://open.spotify.com/track/2aLfLwHtOqe2a6cbTR5hwb">13</div>
+        <div class="door" data-day="14" data-spotify="https://open.spotify.com/track/3aHqHJeQGFj5g64Iflm1BQ">14</div>
+        <div class="door" data-day="15" data-spotify="https://open.spotify.com/track/2fROb3zXlBkCmt0JwfPOg7">15</div>
+        <div class="door" data-day="16" data-spotify="https://open.spotify.com/track/6Whl5SKz9B7KdjXVrHpJZq">16</div>
+        <div class="door" data-day="17" data-spotify="https://open.spotify.com/track/5mZqLtnc8gG3WvMl2RZkIh">17</div>
+        <div class="door" data-day="18" data-spotify="https://open.spotify.com/track/2Wobz5Xr6zA6rpgnz47Uwv">18</div>
+        <div class="door" data-day="19" data-spotify="https://open.spotify.com/track/7Jf57wSMbZ8FhGi6okV5tO">19</div>
+        <div class="door" data-day="20" data-spotify="https://open.spotify.com/track/5XElRYbA4Ac6C4u3jHHvrc">20</div>
+        <div class="door" data-day="21" data-spotify="https://open.spotify.com/track/4tzw9EK4knJ8uWawKIF4q6">21</div>
+        <div class="door" data-day="22" data-spotify="https://open.spotify.com/track/0czPwi85jcMdmhM3Usf7lV">22</div>
+        <div class="door" data-day="23" data-spotify="https://open.spotify.com/track/4RweJvjxsFQfK0Zov5gp2l">23</div>
+        <div class="door" data-day="24" data-spotify="https://open.spotify.com/track/0ilvMEnjjFwAF5ppQyB6Rp">24</div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const today = new Date().getDate(); // Get today's day of the month
+            const doors = document.querySelectorAll('.door');
+            
+            doors.forEach(door => {
+                const doorDay = parseInt(door.dataset.day); // Get the door's day number
+                
+                if (doorDay > today) {
+                    door.classList.add('locked'); // Lock doors for future days
+                } else {
+                    door.addEventListener('click', function () {
+                        if (!door.classList.contains('opened')) {
+                            door.classList.add('opened'); // Open the door
+                            const spotifyLink = door.dataset.spotify;
+                            window.open(spotifyLink, '_blank'); // Open the Spotify link
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
